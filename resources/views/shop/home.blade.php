@@ -3,7 +3,7 @@
 @section('content')
 
 {{-- 受け取り方法 --}}
-@if (session()->has('receipt') && $stop_flag === false)
+@if (session()->has('receipt.date') && $stop_flag === false)
 @php
 if (session('receipt.service') == 'takeout') {
     $service = 'お持ち帰り';
@@ -15,9 +15,9 @@ if (session('receipt.service') == 'takeout') {
 @endphp
 <div id="changeDateBtn">
   <div class="container">
-    @if (session('receipt.service') !== null)
+    {{-- @if (session('receipt.service') !== null)
     <span class="deli">{{ $service }}</span>
-    @endif
+    @endif --}}
     @if (session('receipt.date') !== null)
     <span class="date">{{ date('n月j日', strtotime(session('receipt.date'))).' '.session('receipt.time') }}</span>
     @endif
