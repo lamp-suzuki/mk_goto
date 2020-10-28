@@ -30,28 +30,29 @@ class ManagesTableSeeder extends Seeder
         ]);
 
         // 店舗の追加
-        // DB::table('shops')->insert([
-        //     [
-        //         'manages_id' => 1,
-        //         'name' => '本店',
-        //         'zipcode' => '604-0024',
-        //         'pref' => '京都府',
-        //         'address1' => '京都市中京区下妙覚寺町',
-        //         'address2' => '１９５ KMGビル 4F',
-        //         'email' => 'info@lamp.jp',
-        //         'tel' => '075-600-2721',
+        DB::table('shops')->insert([
+            [
+                'manages_id' => 1,
+                'name' => 'テスト店',
+                'zipcode' => '604-0024',
+                'pref' => '京都府',
+                'address1' => '京都市中京区下妙覚寺町',
+                'address2' => '１９５ KMGビル 4F',
+                'email' => 'suzuki@lamp.jp',
+                'tel' => '075-600-2721',
 
-        //         'takeout_sun' => '11:00,14:00,15:00,19:00',
-        //         'takeout_mon' => '11:00,14:00,15:00,19:00',
-        //         'takeout_tue' => '11:00,14:00,15:00,19:00',
-        //         'takeout_wed' => '11:00,14:00,15:00,19:00',
-        //         'takeout_thu' => '11:00,14:00,15:00,19:00',
-        //         'takeout_fri' => '11:00,14:00,15:00,19:00',
-        //         'takeout_sat' => '11:00,14:00,15:00,19:00',
+                'takeout_preparation' => 240,
+                'takeout_sun' => '10:00,14:00,17:00,22:00',
+                'takeout_mon' => '10:00,14:00,17:00,22:00',
+                'takeout_tue' => '10:00,14:00,17:00,22:00',
+                'takeout_wed' => '10:00,14:00,17:00,22:00',
+                'takeout_thu' => '10:00,14:00,17:00,22:00',
+                'takeout_fri' => '10:00,14:00,17:00,22:00',
+                'takeout_sat' => '10:00,14:00,17:00,22:00',
 
-        //         'created_at' => date('Y-m-d H:i:s'),
-        //         'updated_at' => date('Y-m-d H:i:s')
-        //     ]
-        // ]);
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ]);
     }
 }

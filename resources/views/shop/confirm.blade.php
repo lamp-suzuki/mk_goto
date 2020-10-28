@@ -33,10 +33,10 @@
           </button>
         </div>
         @endif
-        <p>ご登録内容をご確認の上「注文を確定する」ボタンを押して下さい。</p>
+        <p>ご登録内容をご確認の上「予約を確定する」ボタンを押して下さい。</p>
         <div class="mb-4">
-          <h3 class="form-ttl">受け取りについて</h3>
-          <div class="form-group">
+          <h3 class="form-ttl">ご希望日時</h3>
+          <div class="form-group d-none">
             @php
             if (session('receipt.service') == 'takeout') {
                 $service = 'お持ち帰り';
@@ -50,12 +50,12 @@
             <p class="mb-0">{{ $service }}</p>
           </div>
           <div class="form-group">
-            <label class="small d-block" for="">お受け取り希望日時</label>
+            {{-- <label class="small d-block" for="">ご希望日時</label> --}}
             <p class="mb-0">{{ $receipt['date'] }} {{ $receipt['time'] }}</p>
             <input type="hidden" name="delivery_time" value="{{ $receipt['date'] }} {{ $receipt['time'] }}">
           </div>
           @if (session('receipt.service') != 'ec')
-          <div class="form-group">
+          <div class="form-group d-none">
             <label class="small d-block" for="">ご注文店舗</label>
             <p class="mb-0">{{ $shop->name }}</p>
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
@@ -85,9 +85,8 @@
             <input type="hidden" name="email" value="{{ $form_order['email'] }}">
           </div>
         </div>
-        @if(session('receipt.service') != 'takeout')
         <div class="mb-4">
-          <h3 class="form-ttl">お届け先情報</h3>
+          <h3 class="form-ttl">送迎場所</h3>
           <div class="form-group mb-0">
             <p class="mb-0">
               〒{{ $form_order['zipcode'] }}
@@ -102,7 +101,6 @@
             <input type="hidden" name="address2" value="{{ $form_order['address2'] }}">
           </div>
         </div>
-        @endif
         <div class="">
           <h3 class="form-ttl">お支払い方法</h3>
           @if ($payment['pay'] == 1)
@@ -143,7 +141,7 @@
     @endif
     <div class="py-4">
       <h3 class="ttl-horizon">
-        <span class="d-block container">注文内容</span>
+        <span class="d-block container">プラン内容</span>
       </h3>
       <div class="container">
         <div class="cart__list">
@@ -183,10 +181,10 @@
         <table class="w-100 table table-borderless mb-0">
           <tbody>
             <tr>
-              <th>商品小計</th>
+              <th>小計</th>
               <td>¥ {{ number_format(session('cart.amount')) }}</td>
             </tr>
-            @if (session('cart.shipping') !== 0)
+            {{-- @if (session('cart.shipping') !== 0)
             <tr>
               <th>送料</th>
               <td>¥ {{ number_format(session('cart.shipping')) }}</td>
@@ -201,7 +199,7 @@
             <tr>
               <th>応援金</th>
               <td>¥ {{ number_format(session('cart.okimochi')) }}</td>
-            </tr>
+            </tr> --}}
           </tbody>
           <tfoot>
             <tr>
@@ -212,12 +210,12 @@
               <td>¥ {{ number_format(session('cart.amount') + session('cart.shipping') + session('cart.okimochi')) }}</td>
               @endif
             </tr>
-            @if ($point_flag)
+            {{-- @if ($point_flag)
             <tr class="small">
               <th>獲得ポイント</th>
               <td>{{ number_format(floor(session('cart.amount')*0.01)) }}pt</td>
             </tr>
-            @endif
+            @endif --}}
           </tfoot>
         </table>
       </div>
@@ -226,7 +224,7 @@
       <div class="container">
         <div class="d-flex justify-content-center form-btns">
           <a class="btn btn-lg bg-white btn-back mr-2" href="{{ route('shop.payment', ['account' => $sub_domain]) }}">戻る</a>
-          <button class="btn btn-lg btn-primary" type="submit">注文を確定する</button>
+          <button class="btn btn-lg btn-primary" type="submit">予約を確定する</button>
         </div>
       </div>
     </div>

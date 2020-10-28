@@ -63,11 +63,14 @@
               }
               @endphp
               <p class="price">{{ number_format(($product->price + $opt_price)*session('cart.products.'.$index.'.quantity')) }}</p>
-              <select class="form-control form-control-sm w-auto js-cart-quantity" name="counts" data-quantity="{{ session('cart.products.'.$index.'.quantity') }}" data-index="{{ $index }}" data-price="{{ $product->price + $opt_price }}">
-                @for ($i = 1; $i <= 50; $i++)
-                <option value="{{ $i }}"@if($i==session('cart.products.'.$index.'.quantity')) selected @endif>{{ $i }}</option>
-                @endfor
-              </select>
+              <div>
+                <select class="form-control form-control-sm w-auto js-cart-quantity d-inline-flex" name="counts" data-quantity="{{ session('cart.products.'.$index.'.quantity') }}" data-index="{{ $index }}" data-price="{{ $product->price + $opt_price }}">
+                  @for ($i = 1; $i <= 50; $i++)
+                  <option value="{{ $i }}"@if($i==session('cart.products.'.$index.'.quantity')) selected @endif>{{ $i }}</option>
+                  @endfor
+                </select>
+                <small class="d-inline-flex">人</small>
+              </div>
             </div>
             <div class="delete">
               <button class="btn btn-sm btn-primary btn-cartdelete" type="button" data-id="{{ $index }}">削除</button>
@@ -83,10 +86,10 @@
     <!-- .cart__list -->
     <div class="cart__delidate pb-4">
       <h3 class="ttl-horizon">
-        <span class="d-block container">お受け取りについて</span>
+        <span class="d-block container">日時について</span>
       </h3>
       <div class="container">
-        <div class="form-group">
+        <div class="form-group d-none">
           <label for="changeReceive" class="small d-block">お受け取り方法</label>
           <select id="changeReceive" class="form-control js-vali" name="changeReceive">
             <option value="takeout" @if(session('receipt.service')==='takeout') selected @endif>お持ち帰り(テイクアウト)</option>
@@ -94,7 +97,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="changeDeliveryDate" class="small d-block">お受け取り日時</label>
+          <label for="changeDeliveryDate" class="small d-block">ご希望日時</label>
           <select id="deliveryDate" class="form-control js-vali" name="delivery_date">
             @for ($i = 0; $i <= 6; $i++)
             <option value="{{ date('Y-m-d', strtotime('+'.$i.' day')) }}" @if(session('receipt.date')===date('Y-m-d', strtotime('+'.$i.' day'))) selected @endif>{{ date('Y年n月j日', strtotime('+'.$i.' day')) }}@if($i == 0)（本日）@elseif($i == 1)（明日）@endif</option>
@@ -107,7 +110,7 @@
           </select>
         </div>
         @if(session('receipt.service')==='takeout')
-        <div class="form-group">
+        <div class="form-group d-none">
           <label for="changeDeliveryDate" class="small d-block">お受け取り店舗</label>
           <select id="changeDeliveryShop" class="form-control js-vali" name="delivery_shop">
             <option>店舗を選択</option>
@@ -119,7 +122,7 @@
         @endif
       </div>
     </div>
-    <div class="cart__option">
+    <div class="cart__option d-none">
       <h3 class="ttl-horizon mb-0">
         <span class="d-block container">オプション</span>
       </h3>
@@ -191,8 +194,8 @@
       <div class="container">
         <div class="d-flex justify-content-center form-btns">
           <a class="btn btn-lg bg-white btn-back mr-2" href="{{ route('shop.home', ['account' => $sub_domain]) }}">戻る</a>
-          <button class="btn btn-lg btn-primary" @if(!Auth::check('web')) type="button" data-toggle="modal" data-target="#signup" @else type="submit" @endif @if ((session()->has('cart.vali')) || ($delivery_shipping_min !== null && $delivery_shipping_min > session('cart.amount')))disabled @endif>注文へ進む</button>
-          {{-- <button class="btn btn-lg btn-primary" type="submit">注文へ進む</button> --}}
+          {{-- <button class="btn btn-lg btn-primary" @if(!Auth::check('web')) type="button" data-toggle="modal" data-target="#signup" @else type="submit" @endif @if ((session()->has('cart.vali')) || ($delivery_shipping_min !== null && $delivery_shipping_min > session('cart.amount')))disabled @endif>注文へ進む</button> --}}
+          <button class="btn btn-lg btn-primary" type="submit">注文へ進む</button>
         </div>
       </div>
     </div>
@@ -239,13 +242,13 @@
 </div>
 <!-- .modal -->
 
-<script language="javascript" type="text/javascript">
+{{-- <script language="javascript" type="text/javascript">
   const submitbtn = document.getElementById('submitbtn');
   // 実行
   submitbtn.addEventListener('click', (e) => { // 公開
     e.preventDefault();
     document.nextform.submit();
   });
-</script>
+</script> --}}
 @endif
 @endsection

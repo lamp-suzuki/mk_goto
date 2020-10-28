@@ -77,6 +77,9 @@ $('#step2 button[name="next"]').on("click", function() {
 });
 
 // 受け取り時間選択
+$('#FirstSelect').on('show.bs.modal', function (e) {
+  getBusinessTime($("#deliveryDate").val());
+});
 $("#deliveryDate, #changedeliveryDate").on("change", function() {
   getBusinessTime($(this).val());
 });

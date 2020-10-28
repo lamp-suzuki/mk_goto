@@ -89,19 +89,19 @@
         <table class="w-100 table table-borderless mb-0">
           <tbody>
             <tr>
-              <th>商品小計</th>
+              <th>小計</th>
               <td>¥ {{ number_format(session('cart.amount')) }}</td>
             </tr>
             @if (session('cart.shipping') !== 0)
-            <tr>
+            {{-- <tr>
               <th>送料</th>
               <td>¥ {{ number_format(session('cart.shipping')) }}</td>
-            </tr>
+            </tr> --}}
             @endif
-            <tr>
+            {{-- <tr>
               <th>応援金</th>
               <td>¥ {{ number_format(session('cart.okimochi')) }}</td>
-            </tr>
+            </tr> --}}
           </tbody>
           <tfoot>
             <tr>
@@ -109,10 +109,10 @@
               <td>¥ {{ number_format(session('cart.amount') + session('cart.shipping') + session('cart.okimochi')) }}</td>
             </tr>
             @if ($point_flag)
-            <tr class="small">
+            {{-- <tr class="small">
               <th>獲得ポイント</th>
               <td>{{ number_format(floor(session('cart.amount')*0.01)) }}pt</td>
-            </tr>
+            </tr> --}}
             @endif
           </tfoot>
         </table>

@@ -15,7 +15,7 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="receipt" content="{{ !session()->has('receipt') ? 'on' : 'no' }}">
+  <meta name="receipt" content="{{ !session()->has('receipt.date') ? 'on' : 'no' }}">
 
   @hasSection('page_title')
   <title>@yield('page_title') | 【公式】{{ $meta_title }} | テイクアウト（お持ち帰り）注文サイト</title>
@@ -168,12 +168,8 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
           <a class="text-white" href="{{ route('shop.news', ['account' => $sub_domain]) }}">お知らせ一覧</a>
         </div>
         <div class="d-flex justify-content-lg-center justify-content-start flex-wrap mt-3">
-          <a class="text-white small mr-3 mb-2"
-            href="{{ route('shop.privacy', ['account' => $sub_domain]) }}">プライバシーポリシー</a>
-          <a class="text-white small mr-3 mb-2"
-            href="{{ route('shop.law', ['account' => $sub_domain]) }}">特定商取引法に基づく表記</a>
-          <a class="text-white small mr-3 mb-2" href="https://system.take-eats.jp" target="_blank">このシステムについて</a>
-          {{-- <a class="text-white small mr-3 mb-2" href="https://lamp.jp" target="_blank">運営会社</a> --}}
+          <a class="text-white small mr-3 mb-2" href="https://www.mk-group.co.jp/privacy.html" target="_blank">プライバシーポリシー</a>
+          <a class="text-white small mr-3 mb-2" href="https://www.mk-group.co.jp/travel/tour-kiyaku.html" target="_blank">旅行規約</a>
         </div>
       </div>
     </div>

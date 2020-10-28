@@ -92,9 +92,9 @@
         </div>
         <!-- .form-group -->
       </div>
-      @if(session('receipt.service') != 'takeout')
+
       <div class="mt-4 container">
-        <h3 class="form-ttl">お届け先情報</h3>
+        <h3 class="form-ttl">送迎場所</h3>
         <div class="form-group">
           <label class="small d-block form-must" for="">郵便番号</label>
           <div class="input-group w-50">
@@ -179,15 +179,25 @@
           @else
           <input type="text" class="form-control" id="address2" name="address2" value="{{ session('form_order.address2') }}" />
           @endif
+          <small class="form-text text-muted d-block mt-2">【送迎エリア】
+            <br>京都市（一部除く）、宇治市（一部除く）、城陽市、長岡京市、向日町、八幡市。
+            <br>大津市（一人1,000円追加、高速代別途）。
+            <br>亀岡市、草津市、栗東市、守山市（一人2,000円追加、高速代別途）。
+            <br>※追加料金分は当日現地でのお支払いとなり、GoToトラベルキャンペーン対象外となります。
+            <br>※京都市、宇治市の次のエリアは本件対象外とさせていただきます。
+            <br>　北区中川・小野・杉阪・真弓・大森・雲ヶ畑
+            <br>　右京区京北・嵯峨清滝・嵯峨水尾・嵯峨越畑・嵯峨樒原
+            <br>　左京区花脊・広河原・久多・大原
+            <br>　伏見区醍醐陀羅谷
+            <br>　宇治市炭山・二尾・池尾・笠取</small>
         </div>
         <!-- .form-group -->
       </div>
-      @endif
     </div>
   </div>
   <div>
     @if (!isset($users))
-    <div class="pt-4 pt-md-0 pb-4">
+    {{-- <div class="pt-4 pt-md-0 pb-4">
       <h3 class="ttl-horizon">
         <span class="d-block container">会員について</span>
       </h3>
@@ -211,7 +221,7 @@
           @endif
         </div>
       </div>
-    </div>
+    </div> --}}
     @endif
     <div class="py-4 bg-light">
       <div class="container">

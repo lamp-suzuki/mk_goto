@@ -21,9 +21,6 @@ if (session('receipt.service') == 'takeout') {
     @if (session('receipt.date') !== null)
     <span class="date">{{ date('n月j日', strtotime(session('receipt.date'))).' '.session('receipt.time') }}</span>
     @endif
-    @if (session('receipt.shop_name') !== null)
-    <span class="shop">{{ session('receipt.shop_name') }}</span>
-    @endif
     <div class="link" style="cursor: pointer">変更</div>
   </div>
 </div>
@@ -101,10 +98,10 @@ if (session('receipt.service') == 'takeout') {
             </div>
             <div class="catalog-btn">
               @if (isset($stocks[$product->id]) && $stocks[$product->id] <= 0)
-              <button class="btn btn-block btn-dark" type="button">売り切れ</button>
+              <button class="btn btn-block btn-dark" type="button">満席</button>
               @else
               <button class="btn btn-block btn-primary" type="button" data-toggle="modal"
-                data-target="#modal-item{{ $product->id }}">数量・オプションを選ぶ</button>
+                data-target="#modal-item{{ $product->id }}">予約へ進む</button>
               @endif
             </div>
             {{-- modal --}}
@@ -199,8 +196,9 @@ if (session('receipt.service') == 'takeout') {
                       </div>
                       @endif
                       @if (isset($stocks[$product->id]) && $stocks[$product->id] > 0 && $stop_flag === false)
-                      <div class="number">
-                        <input class="num-spinner" type="number" name="quantity" value="1" min="1" max="50" step="1" />
+                      <p class="text-center small mt-2 mb-1">ご予約人数</p>
+                      <div class="number pt-0">
+                        <input class="num-spinner" type="number" name="quantity" value="1" min="2" max="50" step="1" />
                       </div>
                       @endif
                     </div>
@@ -244,7 +242,7 @@ if (session('receipt.service') == 'takeout') {
       <div class="modal-body">
         <div class="tab-content">
           <input type="hidden" name="service" id="set-service" value="">
-          <div id="step1" class="tab-pane fade show active">
+          {{-- <div id="step1" class="tab-pane fade show active">
             <h3>
               <span>STEP1</span>
               <span>お受け取り方法を選択</span>
@@ -334,8 +332,8 @@ if (session('receipt.service') == 'takeout') {
               </div>
             </button>
             @endif
-          </div>
-          <div id="step2" class="tab-pane fade">
+          </div> --}}
+          {{-- <div id="step2" class="tab-pane fade">
             <h3>
               <span>STEP2</span>
               <span>お受け取り場所を選択</span>
@@ -354,15 +352,15 @@ if (session('receipt.service') == 'takeout') {
               </button>
               <button class="btn btn-primary rounded-pill" id="next-step3" type="button" name="next">次へ進む</button>
             </div>
-          </div>
-          <div id="step3" class="tab-pane fade">
+          </div> --}}
+          <div id="step3" class="tab-pane fade show active">
             <h3>
-              <span>STEP3</span>
-              <span>お受け取り日時を選択</span>
+              <span>ご希望日時</span>
+              <span></span>
             </h3>
             <div class="form-group">
               <select id="deliveryDate" class="form-control" name="delivery_date">
-                @for ($i = 0; $i <= 6; $i++)
+                @for ($i = 4; $i <= 14; $i++)
                 <option value="{{ date('Y-m-d', strtotime('+'.$i.' day')) }}">{{ date('Y年n月j日', strtotime('+'.$i.' day')) }}@if($i == 0)（本日）@elseif($i == 1)（明日）@endif</option>
                 @endfor
               </select>
@@ -374,22 +372,22 @@ if (session('receipt.service') == 'takeout') {
             </div>
             <small id="datevali" class="form-text text-danger" style="display: none">有効な日時をご選択ください</small>
             <div class="text-center mt-4">
-              <button class="btn-step-back mr-1" type="button">
+              {{-- <button class="btn-step-back mr-1" type="button">
                 <i data-feather="arrow-left"></i>
-              </button>
-              <button class="btn btn-primary rounded-pill" id="nextstep3" type="button">メニュー選択に進む</button>
+              </button> --}}
+              <button class="btn btn-primary rounded-pill" id="nextstep3" type="button">選択に進む</button>
             </div>
           </div>
         </div>
-        <div id="first-progress" class="progress">
+        {{-- <div id="first-progress" class="progress">
           <span class="steps">1/3</span>
           <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0"
             aria-valuemax="100"></div>
-        </div>
+        </div> --}}
       </div>
-      <div class="modal-footer" data-dismiss="modal" aria-label="Close">
+      {{-- <div class="modal-footer" data-dismiss="modal" aria-label="Close">
         <p class="modal-close" data-dismiss="modal" aria-label="Close">まずはメニューをみる</p>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
