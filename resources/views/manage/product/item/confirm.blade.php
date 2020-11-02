@@ -1,7 +1,7 @@
 @extends('layouts.manage.app')
 
 @section('content')
-<h2 class="h5 text-center font-weight-bold mb-4">こちらの内容で商品を@if (isset($inputs['draft']))
+<h2 class="h5 text-center font-weight-bold mb-4">こちらの内容で店舗を@if (isset($inputs['draft']))
   下書き保存
   @else
   公開
@@ -10,17 +10,17 @@
   @csrf
   <div class="p-4 rounded-lg bg-white">
     <div class="form-group">
-      <label for="">商品名</label>
+      <label for="">店舗名</label>
       <span>{{ $inputs['name'] }}</span>
       <input type="hidden" name="name" value="{{ $inputs['name'] }}" />
     </div>
     <div class="form-group">
-      <label for="">商品価格（税込）</label>
+      <label for="">店舗価格（税込）</label>
       <span>{{ number_format($inputs['price']) }}円</span>
       <input type="hidden" name="price" value="{{ $inputs['price'] }}" />
     </div>
     <div class="form-group">
-      <label for="">商品単位</label>
+      <label for="">店舗単位</label>
       @if ($inputs['unit'] === null)
       <span>個</span>
       <input type="hidden" name="unit" value="個" />
@@ -30,7 +30,7 @@
       @endif
     </div>
     <div class="form-group">
-      <label for="">商品説明</label>
+      <label for="">店舗説明</label>
       <span>{{ $inputs['explanation'] }}</span>
       <input type="hidden" name="explanation" value="{{ $inputs['explanation'] }}">
     </div>

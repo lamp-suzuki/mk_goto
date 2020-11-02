@@ -1,7 +1,7 @@
 @extends('layouts.manage.app')
 
 @section('content')
-<h2 class="page-ttl">商品の新規追加</h2>
+<h2 class="page-ttl">店舗の新規追加</h2>
 
 <form action="{{ route('manage.product.item.confirm', ['account' => $sub_domain]) }}" method="post" enctype="multipart/form-data">
   @csrf
@@ -13,7 +13,7 @@
   </div>
   <div class="form-group">
     <label for="itemName">
-      商品名
+      店舗名
       <span class="badge badge-warning text-white ml-1">必須</span>
     </label>
     <input type="text" class="form-control @error('name') is-invalid @enderror" id="itemName" name="name"
@@ -24,7 +24,7 @@
   </div>
   <div class="form-group">
     <label for="itemPrice">
-      商品価格（税込）
+      店舗価格（税込）
       <span class="badge badge-warning text-white ml-1">必須</span>
     </label>
     <div class="input-group w-50 @error('price') is-invalid @enderror">
@@ -39,13 +39,13 @@
     @enderror
   </div>
   <div class="form-group">
-    <label for="itemUnit">商品単位</label>
+    <label for="itemUnit">店舗単位</label>
     <input type="text" class="form-control w-auto" id="itemUnit" name="unit" value="{{ old('unit') }}"
       placeholder="個やセットなど" />
     <small class="form-text text-muted">※未入力の場合は「個」になります。</small>
   </div>
   <div class="form-group">
-    <label for="itemDesc">商品説明</label>
+    <label for="itemDesc">店舗説明</label>
     <textarea class="form-control" id="itemDesc" name="explanation" rows="10">{{ old('explanation') }}</textarea>
   </div>
   <div class="form-group">

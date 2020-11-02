@@ -23,9 +23,9 @@
 @endif
 
 @if(isset($action))
-<h2 class="h5 text-center font-weight-bold mb-4">店舗を更新しました。</h2>
+<h2 class="h5 text-center font-weight-bold mb-4">会社を更新しました。</h2>
 @else
-<h2 class="h5 text-center font-weight-bold mb-4">店舗を追加しました。</h2>
+<h2 class="h5 text-center font-weight-bold mb-4">会社を追加しました。</h2>
 @endif
 <div class="p-3 rounded-lg bg-white row col-lg-9 mx-auto text-center">
   <p class="font-weight-bold mb-0 mx-auto">{{ $name }}</p>

@@ -1,7 +1,7 @@
 @extends('layouts.manage.app')
 
 @section('content')
-<h2 class="page-ttl">店舗の追加・編集</h2>
+<h2 class="page-ttl">会社の追加・編集</h2>
 
 {{-- 成功メッセージ --}}
 @if(session()->has('message'))
@@ -35,7 +35,7 @@
       <table class="item__list-table">
         <thead>
           <tr>
-            <th class="">店舗名</th>
+            <th class="">会社名</th>
             <th class="edit">編集</th>
           </tr>
         </thead>

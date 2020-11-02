@@ -28,7 +28,7 @@
 
 <form class="form-inline bg-white p-3">
   @csrf
-  <input type="search" class="form-control mr-2 bg-light" id="product_search" placeholder="商品名で検索" style="width: 60%;" />
+  <input type="search" class="form-control mr-2 bg-light" id="product_search" placeholder="店舗名で検索" style="width: 60%;" />
   <button type="button" class="btn btn-primary" id="product_search_btn">
     <i data-feather="search"></i>
     <span>絞り込み</span>
@@ -57,7 +57,7 @@
         <tr>
           <th>画像</th>
           <th>状態</th>
-          <th>商品名</th>
+          <th>店舗名</th>
           <th>価格</th>
           <th class="edit">編集</th>
         </tr>

@@ -7,14 +7,14 @@
   <div class="container">
     <h2>
       <i data-feather="check-square" width="36" height="36"></i>
-      <span>ご注文を受け付けました！</span>
+      <span>ご予約を受け付けました！</span>
     </h2>
     <p class="text-center font-weight-bold mt-3">
-      注文番号は
+      予約番号は
       <span class="text-primary">{{ $order_id }}</span>
       です。
     </p>
-    <div class="thanks-menu">
+    {{-- <div class="thanks-menu">
       @foreach ($thumbnails as $thum)
       @if ($thum !== null)
       <div>
@@ -22,17 +22,17 @@
       </div>
       @endif
       @endforeach
-    </div>
+    </div> --}}
     <p class="text-center">
-      ご注文ありがとうございます！
+      ご予約ありがとうございます！
       <br />
       ご入力いただいたメールアドレス宛に
       <br />
-      ご注文内容の詳細をお送りいたしました。
+      ご予約内容の詳細をお送りいたしました。
     </p>
     {{-- <p class="text-center">
-      ご注文内容は
-      <a href="./past-orders.html">注文履歴</a>
+      ご予約内容は
+      <a href="./past-orders.html">予約履歴</a>
       よりご確認下さい。
     </p> --}}
     <hr />

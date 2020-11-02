@@ -5,13 +5,13 @@ $weeks = ['sun' => '日','mon' => '月','tue' => '火','wed' => '水','thu' => '
 @endphp
 
 @section('content')
-<h2 class="h5 text-center font-weight-bold mb-4">こちらの内容で店舗を追加します。</h2>
+<h2 class="h5 text-center font-weight-bold mb-4">こちらの内容で会社を追加します。</h2>
 <form action="{{ route('manage.shop.save', ['account' => $sub_domain]) }}" method="post">
   @csrf
   <div class="p-4 rounded-lg bg-white">
     <h3 class="font-weight-bold h5 mb-3">1. 基本情報</h3>
     <div class="form-group">
-      <label for="name">店舗名</label>
+      <label for="name">会社名</label>
       <span>{{ $inputs['name'] }}</span>
       <input type="hidden" id="name" name="name" value="{{ $inputs['name'] }}" />
     </div>

@@ -62,7 +62,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('manage.product.index', ['account' => $sub_domain]) }}">
                 <span class="feather-icon"><i data-feather="book"></i></span>
-                <span>商品の追加・編集</span>
+                <span>店舗の追加・編集</span>
               </a>
             </li>
             <li class="nav-item">
@@ -80,7 +80,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('manage.shop.index', ['account' => $sub_domain]) }}">
                 <span class="feather-icon"><i data-feather="flag"></i></span>
-                <span>店舗の追加・編集</span>
+                <span>会社の追加・編集</span>
               </a>
             </li>
             <li class="nav-item">
