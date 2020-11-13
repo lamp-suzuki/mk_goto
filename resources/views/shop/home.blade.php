@@ -281,23 +281,23 @@ $service = 'お取り寄せ';
         <div class="form-group">
           <label class="d-block text-body font-weight-bold">ご予算</label>
           <div class="form-check form-check-inline d-inline-flex">
-            <input class="form-check-input" type="radio" name="" id="budget_1" value="">
+            <input class="form-check-input" type="radio" name="budget" id="budget_1" value="">
             <label class="form-check-label text-body" style="font-size:14px" for="budget_1">選択なし</label>
           </div>
           <div class="form-check form-check-inline d-inline-flex">
-            <input class="form-check-input" type="radio" name="" id="budget_2" value="">
+            <input class="form-check-input" type="radio" name="budget" id="budget_2" value="">
             <label class="form-check-label text-body" style="font-size:14px" for="budget_2">¥5,000以下</label>
           </div>
           <div class="form-check form-check-inline d-inline-flex">
-            <input class="form-check-input" type="radio" name="" id="budget_3" value="">
+            <input class="form-check-input" type="radio" name="budget" id="budget_3" value="">
             <label class="form-check-label text-body" style="font-size:14px" for="budget_3">¥5,000-¥10,000</label>
           </div>
           <div class="form-check form-check-inline d-inline-flex">
-            <input class="form-check-input" type="radio" name="" id="budget_4" value="">
+            <input class="form-check-input" type="radio" name="budget" id="budget_4" value="">
             <label class="form-check-label text-body" style="font-size:14px" for="budget_4">¥10,000-¥20,000</label>
           </div>
           <div class="form-check form-check-inline d-inline-flex">
-            <input class="form-check-input" type="radio" name="" id="budget_5" value="">
+            <input class="form-check-input" type="radio" name="budget" id="budget_5" value="">
             <label class="form-check-label text-body" style="font-size:14px" for="budget_5">¥20,000以上</label>
           </div>
         </div>

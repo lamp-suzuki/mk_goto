@@ -95,7 +95,7 @@
         <!-- .form-group -->
         <div class="form-group">
           <label class="small d-block" for="other_content">特記事項</label>
-          <textarea name="other_content" class="form-control" id="other_content" rows="6" placeholder="ご要望やお店に伝えたいことがございましたらご入力ください。"></textarea>
+          <textarea name="other_content" class="form-control" id="other_content" rows="6" placeholder="連絡事項など（アレルギー等）がございましたらご記入ください。"></textarea>
         </div>
         <!-- .form-group -->
       </div>
@@ -115,10 +115,7 @@
             <label class="small d-block form-must" for="">カード番号</label>
             <input type="text" class="form-control" name="tacpo" value="" placeholder="半角英数字" />
           </div>
-          <small class="form-text text-muted d-block mt-2">※ご利用希望日の8日前を過ぎている場合はコンビニ決済はご利用いただけませんので他の決済方法をお選びください。
-            <br>コンビニ決済をご希望の方は下の「特記事項」欄にコンビニチェーン名をご記入ください。
-            <br>※TACPO（バリュー決済）をご希望の方は、下の「特記事項」欄にTACPO番号をご記入ください。
-            <br>※具体的なお支払い方法についてはMKトラベルよりメールにてご案内いたします。</small>
+          <small class="form-text text-muted d-block mt-2">※具体的なお支払い方法についてはMKトラベルよりメールにてご案内いたします。</small>
         </div>
       </div>
 
@@ -361,7 +358,7 @@
         <div class="takeeats-bbox">
           <p class="m-0">
             <i data-feather="check-square" class="text-primary mr-1"></i>
-            <span class="small">次回からの注文が簡単に！</span>
+            <span class="small">次回からの予約が簡単に！</span>
           </p>
           @if ($point_flag)
           <p class="m-0">
