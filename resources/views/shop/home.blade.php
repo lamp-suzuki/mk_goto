@@ -70,6 +70,9 @@ $service = 'お取り寄せ';
   <div class="container">
     <p class="p-3 bg-white rounded-sm small">
       <span>ホテル・料亭・レストランなどの「お食事」とMKタクシーでの「送迎」がセットになったパッケージツアーを販売いたします。当ツアーはGoToトラベル事業の支援対象となり、旅行代金に対して「GoToトラベルキャンペーン」の支援が適用されるため、送迎付きなのにお食事のみよりお得になるプランもございます。</span>
+      <span class="d-block text-right mt-3">
+        <a class="text-right" href="{{ route('shop.guide', ['account' => $sub_domain]) }}">ご利用の注意 ></a>
+      </span>
     </p>
   </div>
 </div>
