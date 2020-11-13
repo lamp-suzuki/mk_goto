@@ -169,7 +169,7 @@
         <div class="d-flex justify-content-center form-btns">
           <a class="btn btn-lg bg-white btn-back mr-2" href="{{ route('shop.home', ['account' => $sub_domain]) }}">戻る</a>
           {{-- <button class="btn btn-lg btn-primary" @if(!Auth::check('web')) type="button" data-toggle="modal" data-target="#signup" @else type="submit" @endif @if ((session()->has('cart.vali')) || ($delivery_shipping_min !== null && $delivery_shipping_min > session('cart.amount')))disabled @endif>注文へ進む</button> --}}
-          <button class="btn btn-lg btn-primary" type="submit">注文へ進む</button>
+          <button class="btn btn-lg btn-primary" type="submit">ご予約へ進む</button>
         </div>
       </div>
     </div>

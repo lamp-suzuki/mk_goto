@@ -377,7 +377,7 @@
       <div class="container">
         <div class="d-flex justify-content-center form-btns">
           <a class="btn btn-lg bg-white btn-back mr-2" href="{{ route('shop.cart', ['account' => $sub_domain]) }}">戻る</a>
-          <button class="btn btn-lg btn-primary" type="submit">お支払い情報入力へ</button>
+          <button class="btn btn-lg btn-primary" type="button">確認する</button>
         </div>
       </div>
     </div>
