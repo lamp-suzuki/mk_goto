@@ -79,10 +79,6 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
             <br><i class="text-primary mr-2 d-inline-block align-baseline mb-n2"
               data-feather="user"></i><span>{{ Auth::user()->name }}</span> 様
           </p>
-          <div class="mt-2 pt-2 mb-0 border-top d-flex justify-content-between">
-            <small>ポイント</small>
-            <small class="text-primary">pt</small>
-          </div>
         </div>
         @else
         <div class="spmenu-login-inner">
@@ -90,9 +86,6 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
             <i data-feather="log-in" class="d-inline-block align-middle"></i>
             <span class="d-inline-block align-middle font-weight-bold">ログイン</span>
           </a>
-          <p class="mb-0 mt-2 text-center">
-            <a class="small text-body border-bottom" href="">新規会員登録はこちら</a>
-          </p>
         </div>
         @endif
       </div>

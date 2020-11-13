@@ -57,9 +57,9 @@
               @endif
               @php
               if (isset($options[$index])) {
-                $opt_price = $options[$index]['price'];
+                  $opt_price = $options[$index]['price'];
               } else {
-                $opt_price = 0;
+                  $opt_price = 0;
               }
               @endphp
               <p class="price">{{ number_format(($product->price + $opt_price)*session('cart.products.'.$index.'.quantity')) }}</p>
@@ -81,48 +81,19 @@
           <li>カートの中身は空です。</li>
           @endif
         </ol>
-        <small class="d-block text-muted form-text mt-2">※受付はご利用4日前の17:00までとなります。
-          <br>※お食事開始ご希望時刻を入力してください。
-          <br>※GoToトラベルキャンペーンは2021年1月31日までの予定です（GoToトラベルキャンペーンの給付金の予算が上限に達し次第終了となります）。</small>
       </div>
     </div>
     <!-- .cart__list -->
     <div class="cart__delidate pb-4">
       <h3 class="ttl-horizon">
-        <span class="d-block container">日時について</span>
+        <span class="d-block container">ご利用情報</span>
       </h3>
       <div class="container">
-        <div class="form-group d-none">
-          <label for="changeReceive" class="small d-block">お受け取り方法</label>
-          <select id="changeReceive" class="form-control js-vali" name="changeReceive">
-            <option value="takeout" @if(session('receipt.service')==='takeout') selected @endif>お持ち帰り(テイクアウト)</option>
-            <option value="delivery" @if(session('receipt.service')==='delivery') selected @endif>デリバリー(配達)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="changeDeliveryDate" class="small d-block">ご希望日時</label>
-          <select id="deliveryDate" class="form-control js-vali" name="delivery_date">
-            @for ($i = 0; $i <= 6; $i++)
-            <option value="{{ date('Y-m-d', strtotime('+'.$i.' day')) }}" @if(session('receipt.date')===date('Y-m-d', strtotime('+'.$i.' day'))) selected @endif>{{ date('Y年n月j日', strtotime('+'.$i.' day')) }}@if($i == 0)（本日）@elseif($i == 1)（明日）@endif</option>
-            @endfor
-          </select>
-        </div>
-        <div class="form-group">
-          <select id="changedeliveryTime" class="form-control js-vali" name="delivery_time">
-            <option value="{{ session('receipt.time') }}">{{ session('receipt.time') }}</option>
-          </select>
-        </div>
-        @if(session('receipt.service')==='takeout')
-        <div class="form-group d-none">
-          <label for="changeDeliveryDate" class="small d-block">お受け取り店舗</label>
-          <select id="changeDeliveryShop" class="form-control js-vali" name="delivery_shop">
-            <option>店舗を選択</option>
-            @foreach ($shops as $shop)
-            <option value="{{ $shop->id }}:{{ $shop->name }}"@if(session('receipt.shop_id') !== null && session('receipt.shop_id') == $shop->id) selected @endif>{{ $shop->name }}</option>
-            @endforeach
-          </select>
-        </div>
-        @endif
+        <p class="">ご利用希望日時</p>
+        <p class="">2020年11月09日 10:00</p>
+        <small class="d-block text-muted form-text">※受付はご利用4日前の17:00までとなります。
+          <br>※お食事開始ご希望時刻を入力してください。
+          <br>※GoToトラベルキャンペーンは2021年1月31日までの予定です（GoToトラベルキャンペーンの給付金の予算が上限に達し次第終了となります）。</small>
       </div>
     </div>
     <div class="cart__option d-none">
@@ -155,7 +126,7 @@
       </div>
     </div>
     <!-- .cart__option -->
-    <div class="pb-4">
+    <div class="pb-4 d-none">
       <h3 class="ttl-horizon">
         <span class="d-block container">その他のご要望</span>
       </h3>
