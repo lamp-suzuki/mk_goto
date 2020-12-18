@@ -21,16 +21,16 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('categories_id'); // カテゴリ
             $table->foreign('categories_id')->references('id')->on('categories');
 
-            $table->string('options_id')->nullable();
-
-            $table->string('shops_id');
+            $table->unsignedBigInteger('genres_id'); // genre
+            $table->foreign('genres_id')->references('id')->on('genres');
 
             $table->string('name');
             $table->integer('price');
-            $table->string('unit')->default('個');
+
+            $table->text('time');
+
             $table->text('explanation')->nullable();
-            $table->integer('stock');
-            $table->integer('lead_time')->default(0);
+
             $table->string('status');
 
             $table->integer('sort_id')->default(1);
@@ -38,13 +38,6 @@ class CreateProductsTable extends Migration
             $table->string('thumbnail_1')->nullable();
             $table->string('thumbnail_2')->nullable();
             $table->string('thumbnail_3')->nullable();
-
-            $table->boolean('takeout_flag');
-            $table->boolean('delivery_flag');
-            $table->boolean('ec_flag');
-
-            $table->dateTime('release_start')->nullable();
-            $table->dateTime('release_end')->nullable();
 
             $table->timestamps();
         });

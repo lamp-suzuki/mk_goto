@@ -17,11 +17,10 @@ class CreateStockCustomersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('manages_id'); // 店舗アカウント
             $table->foreign('manages_id')->references('id')->on('manages');
-            $table->unsignedBigInteger('products_id'); // 商品
-            $table->foreign('products_id')->references('id')->on('products');
+            $table->unsignedBigInteger('categories_id'); // 商品
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->unsignedBigInteger('orders_id'); // 注文
             $table->foreign('orders_id')->references('id')->on('orders');
-            $table->string('shops_id');
             $table->integer('stock'); // 在庫カウント
             $table->date('date'); // 日付
         });

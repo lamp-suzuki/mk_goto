@@ -17,9 +17,8 @@ class CreateStocksTable extends Migration
             $table->id();
             $table->unsignedBigInteger('manages_id'); // 店舗アカウント
             $table->foreign('manages_id')->references('id')->on('manages');
-            $table->string('shops_id');
-            $table->unsignedBigInteger('products_id'); // 商品
-            $table->foreign('products_id')->references('id')->on('products');
+            $table->unsignedBigInteger('categories_id'); // 商品
+            $table->foreign('categories_id')->references('id')->on('categories');
             $table->integer('stock'); // 在庫
             $table->date('date'); // 日付
         });

@@ -15,7 +15,10 @@ class CreateGenresTable extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('manages_id'); // 店舗アカウント
+            $table->foreign('manages_id')->references('id')->on('manages');
             $table->string('name');
+            $table->integer('sort_id')->default(1);
             $table->timestamps();
         });
     }

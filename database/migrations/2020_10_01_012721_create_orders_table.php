@@ -18,31 +18,36 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('manages_id'); // 店舗アカウント
             $table->foreign('manages_id')->references('id')->on('manages');
 
-            $table->unsignedBigInteger('shops_id'); // 店舗
-            $table->foreign('shops_id')->references('id')->on('shops');
+            $table->string('shop_name');
+            $table->string('plan_name');
+            $table->string('genre_name');
 
-            $table->json('carts');
-            $table->string('service');
-            $table->integer('shipping');
-            $table->string('delivery_time');
-            $table->integer('okimochi');
-            $table->integer('total_amount');
-            $table->string('payment_method');
-
-            $table->string('pay_tok')->nullable(); // PAY.JPからクレジットトークン
-            $table->string('charge_id')->nullable(); // PAY.JPからのチャージID
-
-            $table->unsignedBigInteger('users_id')->nullable();
+            $table->date('date');
+            $table->time('time');
+            $table->integer('customers');
 
             $table->string('name');
             $table->string('furigana');
             $table->string('email');
             $table->string('tel');
-            $table->string('zipcode')->nullable();
-            $table->string('pref')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('memo')->nullable();
+            $table->text('memo')->nullable();
+
+            $table->integer('payment');
+
+            $table->string('zipcode_1')->nullable();
+            $table->string('pref_1')->nullable();
+            $table->string('address1_1')->nullable();
+            $table->string('address2_1')->nullable();
+
+            $table->string('zipcode_2')->nullable();
+            $table->string('pref_2')->nullable();
+            $table->string('address1_2')->nullable();
+            $table->string('address2_2')->nullable();
+
+            $table->text('waypoints')->nullable();
+
+            $table->integer('amount');
+            $table->boolean('cancel')->default(0);
 
             $table->timestamps();
         });
