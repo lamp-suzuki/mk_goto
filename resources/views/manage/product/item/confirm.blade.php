@@ -63,6 +63,8 @@
   </div>
 
   <div class="text-center mt-4">
+    @if(isset($inputs['id']))<input type="hidden" name="id" value="{{ $inputs['id'] }}">@endif
+    @if(isset($inputs['act']))<input type="hidden" name="act" value="{{ $inputs['act'] }}">@endif
     <button type="submit" class="btn bnt-lg btn-success text-white px-5">保存する</button>
   </div>
 </form>

@@ -8,31 +8,31 @@ $.ajaxSetup({
 });
 
 // カート追加
-$(".addcart").on("click", function(event) {
-  event.preventDefault();
-  $form = $(this)
-    .parents()
-    .parents()
-    .parents("form");
-  $.ajax({
-    headers: {
-      "X-CSRF-TOKEN": csrf
-    },
-    url: "/addcart",
-    type: "POST",
-    data: $form.serialize(),
-    success: function(result) {
-      alert("カートに追加されました");
-      $(".cart-count, .cartstatus .count").text(result["total"]);
-      $(".cartstatus .price").text(result["amount"].toLocaleString());
-      $('input[name="options[]"]').prop("checked", false);
-      $('input[name="quantity"]').val(1);
-    },
-    error: function(result) {
-      alert("カート追加に失敗しました。再度お試しください。");
-    }
-  });
-});
+// $(".addcart").on("click", function(event) {
+//   event.preventDefault();
+//   $form = $(this)
+//     .parents()
+//     .parents()
+//     .parents("form");
+//   $.ajax({
+//     headers: {
+//       "X-CSRF-TOKEN": csrf
+//     },
+//     url: "/addcart",
+//     type: "POST",
+//     data: $form.serialize(),
+//     success: function(result) {
+//       alert("カートに追加されました");
+//       $(".cart-count, .cartstatus .count").text(result["total"]);
+//       $(".cartstatus .price").text(result["amount"].toLocaleString());
+//       $('input[name="options[]"]').prop("checked", false);
+//       $('input[name="quantity"]').val(1);
+//     },
+//     error: function(result) {
+//       alert("カート追加に失敗しました。再度お試しください。");
+//     }
+//   });
+// });
 
 $(".js-cart-quantity").on("change", function() {
   let quantity = $(this).val();

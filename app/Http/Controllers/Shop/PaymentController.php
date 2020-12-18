@@ -18,47 +18,19 @@ class PaymentController extends Controller
      */
     public function index($account, Request $request)
     {
-        $sub_domain = $account;
-        $manages = DB::table('manages')->where('domain', $sub_domain)->first();
+        $manages = DB::table('manages')->where('domain', $account)->first();
 
-        if (Auth::check()) {
-            $point_flag = $manages->point_flag;
-            $user_id = Auth::id();
-            $points = DB::table('points')->where(['manages_id' => $manages->id, 'users_id' => $user_id])->first()->count;
-            if ($points == null) {
-                $points = 0;
-            }
-        } else {
-            $point_flag = 0;
-            $points = 0;
-        }
+        Validator::make($request->all(), [
+            'name1' => 'required',
+            'name2' => 'required',
+            'furi1' => 'required',
+            'furi2' => 'required',
+            'email' => 'required|email',
+            'email' => 'required|email|confirmed',
+            'tel' => 'required',
+        ])->validate();
+        $request->session()->put('form_order', $request->input());
 
-        if ($_SERVER["REQUEST_METHOD"] != 'GET') {
-            Validator::make($request->all(), [
-                'name1' => 'required',
-                'name2' => 'required',
-                'furi1' => 'required',
-                'furi2' => 'required',
-                'email' => 'required|email',
-                'email' => 'required|email|confirmed',
-                'tel' => 'required',
-                'zipcode' => 'alpha_dash',
-            ])->validate();
-            $request->session()->put('form_order', $request->all());
-        }
-
-        if (session('receipt.service') == 'takeout' && session('receipt.shop_id') != null) {
-            $shops = DB::table('shops')->find(session('receipt.shop_id'));
-        } else {
-            $shops = [];
-        }
-
-        // dd($shops);
-
-        return view('shop.payment', [
-            'point_flag' => $point_flag,
-            'points' => $points,
-            'shops' => $shops,
-        ]);
+        return view('shop.payment');
     }
 }

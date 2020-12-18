@@ -49,13 +49,13 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
             <span>{{ $manages->tel }}</span>
           </a>
         </li>
-        <li class="navi-item">
+        {{-- <li class="navi-item">
           <a class="navi-link position-relative" href="{{ route('shop.cart', ['account' => $sub_domain]) }}">
             <span class="cart-count">{{ session('cart.total') == null ? 0 : session('cart.total') }}</span>
             <i data-feather="shopping-cart"></i>
             <span class="navi-link-txt">カート</span>
           </a>
-        </li>
+        </li> --}}
         <li class="navi-item">
           <button id="spopen" class="navi-link btn btn-link rounded-0">
             <i data-feather="menu"></i>
@@ -115,18 +115,7 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
           </a>
         </li>
       </ul>
-      <div class="spmenu-shop">
-        <div class="spmenu-shop-info">
-          <p class="name">{{ $manages->name }}</p>
-          <p class="address">
-            〒{{ $manages_shops->zipcode }}
-            <br />
-            {{ $manages_shops->address1 }}
-            {{ $manages_shops->address2 }}
-          </p>
-          <p class="mb-0 link"><a
-              href="{{ route('shop.shopinfo', ['account' => $sub_domain, 'id' => $manages_shops->id]) }}">店舗情報を見る</a></p>
-        </div>
+      {{-- <div class="spmenu-shop">
         <div class="spmenu-btns mt-3">
           @if ($manages_shops->googlemap_url != null)
           <a class="btn btn-block btn-outline-light" href="{{ $manages_shops->googlemap_url }}">
@@ -139,7 +128,7 @@ $index_route = ['shop.home', 'shop.news', 'shop.info', 'shop.shopinfo', 'shop.gu
             <span class="d-inline-block align-middle text-body small">{{ $manages->tel }}</span>
           </a>
         </div>
-      </div>
+      </div> --}}
     </div>
   </nav>
 

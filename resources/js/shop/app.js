@@ -199,6 +199,14 @@ $(function() {
       $("#couponSuccess").css("display", "none");
     }
   });
+
+  $('input#agree').on('change', function() {
+    if ($(this).prop('checked') == true) {
+      $('#reserve-submit').attr('disabled', false);
+    } else {
+      $('#reserve-submit').attr('disabled', true);
+    }
+  });
 });
 
 function vali_select_shop() {

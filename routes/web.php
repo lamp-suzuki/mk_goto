@@ -42,7 +42,7 @@ Route::domain('{account}.'.config('app.domain'))->group(function ($account) {
         Route::post('/addcart', 'HomeController@addcart')->name('addcart');
 
         // カートページ
-        Route::get('/cart', 'CartController@index')->name('cart');
+        Route::any('/cart', 'CartController@index')->name('cart');
         Route::post('/cart-delete', 'CartController@delete')->name('cart.delete');
         Route::post('/change-quantity', 'CartController@change_quantity')->name('change.quantity');
         Route::get('/cart-vali', 'CartController@cart_vali')->name('vali');

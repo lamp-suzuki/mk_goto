@@ -17,69 +17,15 @@ class CartController extends Controller
      */
     public function index($account, Request $request)
     {
-        $sub_domain = $account;
-        $manages = DB::table('manages')->where('domain', $sub_domain)->first();
-        $shops = DB::table('shops')->where('manages_id', $manages->id)->get();
-
-        // 送料設定
-        if (session()->has('receipt.service') && session('receipt.service') != 'takeout') {
-            if ($manages->{session('receipt.service').'_shipping_free'} <= session('cart.amount')) {
-                session()->put('cart.shipping', 0);
-            } else {
-                session()->put('cart.shipping', $manages->{session('receipt.service').'_shipping'});
-            }
-            // 最低購入金額
-            if (session('receipt.service') == 'delivery') {
-                $delivery_shipping_min = $manages->delivery_shipping_min;
-            } else {
-                $delivery_shipping_min = null;
-            }
-        } else {
-            session()->put('cart.shipping', 0);
-            $delivery_shipping_min = null;
-        }
-
-        $products = [];
-        $options = [];
-        // カート商品取得
-        if (session('cart.products') != null) {
-            foreach (session('cart.products') as $index => $product) {
-                $products[$index] = DB::table('products')->find($product['id']);
-                $temp_price = 0;
-                if ($product['options'] !== null) {
-                    foreach ($product['options'] as $key => $opt) {
-                        $temp = DB::table('options')->find($opt);
-                        $temp_price += $temp->price;
-                        $options[$index]['name'][] = $temp->name;
-                    }
-                    $options[$index]['price'] = $temp_price;
-                }
-            }
-            $cart_products = session('cart.products');
-            foreach ($cart_products as $key => $product) {
-                $flag = DB::table('products')->find($product['id']);
-                if ($flag->{session('receipt.service').'_flag'} == 0) {
-                    session()->put('cart.vali', 'bad');
-                    break;
-                } else {
-                    if (session()->has('cart.vali')) {
-                        session()->forget('cart.vali');
-                    }
-                }
-            }
-            if (count($cart_products) < 1) {
-                if (session()->has('cart.vali')) {
-                    session()->forget('cart.vali');
-                }
-            }
-        }
+        $manages = DB::table('manages')->where('domain', $account)->first();
+        $tour = DB::table('products')->find($request->input('product_id'));
 
         return view('shop.cart', [
             'manages' => $manages,
-            'products' => $products,
-            'options' => $options,
-            'shops' => $shops,
-            'delivery_shipping_min' => $delivery_shipping_min,
+            'tour' => $tour,
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'quantity' => $request->input('quantity'),
         ]);
     }
 
