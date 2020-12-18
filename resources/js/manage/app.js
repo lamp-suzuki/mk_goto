@@ -9,7 +9,7 @@ const feather = require("feather-icons");
 $(function() {
   // featherIcons
   feather.replace({
-    width: 18
+    width: 18,
   });
 
   // resize
@@ -33,7 +33,7 @@ $(function() {
   // --- Category ------
   // delete
   $('.js-delete-form button[type="submit"]').on("click", function() {
-    if (window.confirm("同時に商品も削除されますがよろしいでしょうか？")) {
+    if (window.confirm("同時にツアーも削除されますがよろしいでしょうか？")) {
       return true;
     } else {
       return false;
@@ -41,20 +41,18 @@ $(function() {
   });
   // edit
   $('[data-target="#editCategory"]').on("click", function() {
-    $('#edit-category-form input[name="category_name"]').val(
-      $(this).attr("data-name")
-    );
-    $('#edit-category-form input[name="category_id"]').val(
-      $(this).attr("data-id")
-    );
+    $('#edit-category-form input[name="category_name"]').val($(this).attr("data-name"));
+    $('#edit-category-form input[name="category_id"]').val($(this).attr("data-id"));
+  });
+  $('[data-target="#editGenre"]').on("click", function() {
+    $('#edit-genre-form input[name="genre_name"]').val($(this).attr("data-name"));
+    $('#edit-genre-form input[name="genre_id"]').val($(this).attr("data-id"));
   });
 
   // --- Option ------
   // add
   $('[data-target="#addOption"]').on("click", function() {
-    $('#add-option-form input[name="category_id"]').val(
-      $(this).attr("data-id")
-    );
+    $('#add-option-form input[name="category_id"]').val($(this).attr("data-id"));
   });
   // delete
   $('.js-delete-option button[type="submit"]').on("click", function() {
@@ -66,12 +64,8 @@ $(function() {
   });
   // edit
   $('[data-target="#editOption"]').on("click", function() {
-    $('#edit-option-form input[name="option_name"]').val(
-      $(this).attr("data-name")
-    );
-    $('#edit-option-form input[name="option_price"]').val(
-      $(this).attr("data-price")
-    );
+    $('#edit-option-form input[name="option_name"]').val($(this).attr("data-name"));
+    $('#edit-option-form input[name="option_price"]').val($(this).attr("data-price"));
     $('#edit-option-form input[name="option_id"]').val($(this).attr("data-id"));
   });
 
@@ -90,7 +84,7 @@ $(function() {
           $("<img>").attr({
             src: e.target.result,
             width: "200",
-            title: file.name
+            title: file.name,
           })
         );
       };
@@ -159,7 +153,7 @@ $(function() {
       $(".select2-multiple").select2({
         theme: "bootstrap4",
         placeholder: "キーワードで検索",
-        language: "ja"
+        language: "ja",
       });
     } else {
       $("#saleshop").removeClass("select2-multiple");

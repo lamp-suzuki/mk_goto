@@ -31,12 +31,12 @@ class HomeController extends Controller
         $today_earnings = DB::table('orders')
             ->where('manages_id', $manage->id)
             ->whereDate('created_at', date('Y-m-d'))
-            ->sum('total_amount');
+            ->sum('amount');
 
         $last_earnings = DB::table('orders')
             ->where('manages_id', $manage->id)
             ->whereDate('created_at', date('Y-m-d', strtotime('-1 days')))
-            ->sum('total_amount');
+            ->sum('amount');
 
         $comparison = round(($today_earnings / ($last_earnings != 0 ? $last_earnings : 1) * 100) - 100, 2);
 

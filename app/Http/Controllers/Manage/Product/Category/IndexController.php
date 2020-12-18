@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
 {
@@ -22,59 +23,91 @@ class IndexController extends Controller
         } catch (\Exception $e) {
             $categories = [];
         }
-
         return view('manage.product.category.index', [
             'categories' => $categories
         ]);
     }
 
-    // カテゴリ追加
+    // 店舗追加
     public function add($account, Request $request)
     {
-        try {
-            DB::table('categories')->insert([
-                'manages_id' => $request['manage_id'],
-                'name' => $request['category_name'],
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-            session()->flash('message', 'カテゴリが追加されました。');
-        } catch (\Exception $e) {
-            session()->flash('error', 'エラーが発生しました。');
-        }
-
-        return redirect()->route('manage.product.category.index', ['account' => $account]);
+        return view('manage.product.category.add');
     }
 
-    // カテゴリ編集
-    public function edit($account, Request $request)
+    // 店舗追加
+    public function edit($account, $id)
     {
-        try {
-            DB::table('categories')
-                ->where('id', $request['category_id'])
-                ->update([
-                    'name' => $request['category_name'],
+        return view('manage.product.category.edit',[
+            'shop' => DB::table('categories')->find($id)
+        ]);
+    }
+
+    // 店舗確認
+    public function confirm($account, Request $request)
+    {
+        Validator::make($request->all(), [
+            'area' => 'required',
+            'name' => 'required',
+            'stock' => 'required|integer',
+        ])->validate();
+
+        return view('manage.product.category.confirm', [
+            'input' => $request->input(),
+        ]);
+    }
+
+    // 店舗保存
+    public function save($account, Request $request)
+    {
+        $manages = Auth::guard('manage')->user();
+        if ($request->input('act') == 'add') {
+            // 新規追加
+            try {
+                DB::table('categories')->insert([
+                    'manages_id' => $manages->id,
+                    'name' => $request->input('name'),
+                    'area' => $request->input('area'),
+                    'holiday' => $request->input('holiday'),
+                    'stock' => $request->input('stock'),
+                    'coupon' => $request->input('coupon'),
+                    'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-            session()->flash('message', 'カテゴリが編集されました。');
-        } catch (\Exception $e) {
-            session()->flash('error', 'エラーが発生しました。');
+                session()->flash('message', '店舗が追加されました。');
+            } catch (\Throwable $th) {
+                report($th);
+                session()->flash('error', 'エラーが発生しました。');
+            }
+        } else {
+            // 更新
+            DB::table('categories')->where('id', $request->input('id'))->update([
+                'name' => $request->input('name'),
+                'area' => $request->input('area'),
+                'holiday' => $request->input('holiday'),
+                'stock' => $request->input('stock'),
+                'coupon' => $request->input('coupon'),
+                'updated_at' => now(),
+            ]);
+            try {
+                session()->flash('message', '店舗が更新されました。');
+            } catch (\Throwable $th) {
+                report($th);
+                session()->flash('error', 'エラーが発生しました。');
+            }
         }
-
         return redirect()->route('manage.product.category.index', ['account' => $account]);
     }
 
-    // カテゴリ削除
+    // 店舗削除
     public function delete($account, Request $request)
     {
         try {
-            DB::table('categories')->where('id', $request['category_id'])->delete();
-            session()->flash('message', 'カテゴリが削除されました。');
-        } catch (\Exception $e) {
-            // dd($e);
+            DB::table('categories')->where('id', $request->input('category_id'))->delete();
+            session()->flash('message', '店舗が削除されました。');
+        } catch (\Throwable $th) {
+            report($th);
             session()->flash('error', 'エラーが発生しました。');
         }
-
         return redirect()->route('manage.product.category.index', ['account' => $account]);
     }
 

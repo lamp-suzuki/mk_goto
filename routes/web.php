@@ -93,21 +93,23 @@ Route::domain('{account}.'.config('app.domain'))->group(function ($account) {
                     Route::post('/save', 'SaveController@index')->name('save'); // 公開
                     Route::get('/edit/{id}', 'EditController@index')->name('edit'); // 編集
                     Route::post('/delete', 'DeleteController@index')->name('delete'); // 削除
+                });
+                // 店舗
+                Route::prefix('category')->namespace('Category')->name('category.')->group(function () {
+                    Route::get('/', 'IndexController@index')->name('index');
+                    Route::get('/add', 'IndexController@add')->name('add');
+                    Route::post('/confirm', 'IndexController@confirm')->name('confirm');
+                    Route::post('/save', 'IndexController@save')->name('save');
+                    Route::post('/delete', 'IndexController@delete')->name('delete');
+                    Route::get('/edit/{id}', 'IndexController@edit')->name('edit'); // 編集
+                    Route::post('/sort', 'IndexController@sort_cat')->name('sort'); // 並び替え
 
-                // 在庫系
+                    // 在庫系
                     Route::get('/get-stock', 'StockController@get_stock')->name('get.stock');
                     Route::post('/set-stock', 'StockController@set_stock')->name('set.stock');
                 });
-                // カテゴリー
-                Route::prefix('category')->namespace('Category')->name('category.')->group(function () {
-                    Route::get('/', 'IndexController@index')->name('index');
-                    Route::post('/add', 'IndexController@add')->name('add');
-                    Route::post('/edit', 'IndexController@edit')->name('edit');
-                    Route::post('/delete', 'IndexController@delete')->name('delete');
-                    Route::post('/sort', 'IndexController@sort_cat')->name('sort'); // 並び替え
-                });
-                // オプション
-                Route::prefix('option')->namespace('Option')->name('option.')->group(function () {
+                // genre
+                Route::prefix('genre')->namespace('Genre')->name('genre.')->group(function () {
                     Route::get('/', 'IndexController@index')->name('index');
                     Route::post('/add', 'IndexController@add')->name('add');
                     Route::post('/edit', 'IndexController@edit')->name('edit');
@@ -118,13 +120,13 @@ Route::domain('{account}.'.config('app.domain'))->group(function ($account) {
             // お知らせ
             Route::prefix('post')->namespace('Post')->name('post.')->group(function () {
                 Route::get('/', 'IndexController@index')->name('index'); // 一覧
-            Route::get('/add', 'AddController@index')->name('add'); // 新規追加
-            Route::post('/confirm', 'ConfirmController@index')->name('confirm'); // 確認
-            Route::post('/save', 'SaveController@index')->name('save'); // 公開
-            Route::post('/edit', 'EditController@index')->name('edit'); // 編集
-            Route::post('/delete', 'DeleteController@index')->name('delete'); // 削除
+                Route::get('/add', 'AddController@index')->name('add'); // 新規追加
+                Route::post('/confirm', 'ConfirmController@index')->name('confirm'); // 確認
+                Route::post('/save', 'SaveController@index')->name('save'); // 公開
+                Route::post('/edit', 'EditController@index')->name('edit'); // 編集
+                Route::post('/delete', 'DeleteController@index')->name('delete'); // 削除
 
-            // スライドショー
+                // スライドショー
                 Route::get('/slide', 'SlideController@index')->name('slide');
                 Route::post('/slide/update', 'SlideController@update')->name('slide.update');
 
