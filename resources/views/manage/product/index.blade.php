@@ -26,28 +26,22 @@
 {{-- menu --}}
 @include('manage.product.menu')
 
-<form class="form-inline bg-white p-3">
+<form class="form-inline bg-white p-3" action="" method="GET">
   @csrf
-  <input type="search" class="form-control mr-2 bg-light" id="product_search" placeholder="店舗名で検索" style="width: 60%;" />
-  <button type="button" class="btn btn-primary" id="product_search_btn">
+  <input type="search" name="search" class="form-control mr-2 bg-light" value="" placeholder="ツアー名で検索"
+    style="width: 60%;" />
+  <button type="submit" class="btn btn-primary">
     <i data-feather="search"></i>
     <span>絞り込み</span>
   </button>
 </form>
 
-<div class="item-cats">
-  @foreach ($categories as $cat)
-  <a href="#cat-{{ $cat->id }}">{{ $cat->name }}</a>
-  @endforeach
-</div>
-
 <div class="item__list">
-  @foreach ($categories as $cat)
-  <div class="item__list-wrap" id="cat-{{ $cat->id }}">
+  <div class="item__list-wrap">
     <h3 class="item__list-name">
-      <span>{{ $cat->name }}</span>
+      <span>ツアー一覧</span>
       <a class="btn btn-success text-white float-right"
-        href="{{ route('manage.product.item.add', ['account' => $sub_domain]) }}?cat_id={{ $cat->id }}">
+        href="{{ route('manage.product.item.add', ['account' => $sub_domain]) }}">
         <i class="d-inline-block align-middle" data-feather="plus-circle"></i>
         <span class="d-inline-block align-middle">新規追加</span>
       </a>
@@ -57,49 +51,39 @@
         <tr>
           <th>画像</th>
           <th>状態</th>
-          <th>店舗名</th>
+          <th>ツアー名</th>
           <th>価格</th>
           <th class="edit">編集</th>
         </tr>
       </thead>
       <tbody class="js-sort-table-menu">
-        @if (isset($menus[(int)$cat->id]))
-        @foreach ($menus[(int)$cat->id] as $menu)
-        <tr data-id="{{ $menu->id }}">
+        @foreach ($tours as $tour)
+        <tr>
           <td>
-            @if ($menu->thumbnail_1 != null)
-            <img class="item__list-thumbnail" src="{{ url($menu->thumbnail_1) }}" alt="{{ $menu->name }}" />
+            @if ($tour->thumbnail_1 != null)
+            <img class="item__list-thumbnail" src="{{ url($tour->thumbnail_1) }}" alt="{{ $tour->name }}" />
             @endif
           </td>
-          <td class="text-nowrap">
-            @if ($menu->status == 'draft')
-            下書き
-            @elseif ($menu->status == 'reserve')
-            公開予約
-            @else
-            公開
-            @endif
-          </td>
+          <td class="text-nowrap">@if ($tour->status == 'draft'){{ '下書き' }}@else{{ '公開' }}@endif</td>
           <td class="name">
-            {{-- <small class="d-inline-block text-muted">ID：{{ $menu->id }}</small> --}}
-            <span class="d-inline-block w-100">{{ $menu->name }}</span>
+            <span class="d-inline-block w-100">{{ $tour->name }}</span>
           </td>
           <td>
-            <span class="price">{{ number_format($menu->price) }}</span>
+            <span class="price">{{ number_format($tour->price) }}</span>
           </td>
           <td>
-            <a href="{{ route('manage.product.item.edit', ['account' => $sub_domain, 'id' => $menu->id]) }}" class="edit">
+            <a href="{{ route('manage.product.item.edit', ['account' => $sub_domain, 'id' => $tour->id]) }}"
+              class="edit">
               <i data-feather="edit-2"></i>
             </a>
           </td>
         </tr>
         @endforeach
-        @endif
       </tbody>
     </table>
+    <div class="text-center mt-4">
+      {{ $tours->onEachSide(0)->links() }}
+    </div>
   </div>
-  <!-- .item__list-wrap -->
-  @endforeach
 </div>
-<!-- .item__list -->
 @endsection

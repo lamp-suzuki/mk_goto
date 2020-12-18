@@ -36,8 +36,11 @@ class CreateProductsTable extends Migration
             $table->integer('sort_id')->default(1);
 
             $table->string('thumbnail_1')->nullable();
+            $table->string('caption_1')->nullable();
             $table->string('thumbnail_2')->nullable();
+            $table->string('caption_2')->nullable();
             $table->string('thumbnail_3')->nullable();
+            $table->string('caption_3')->nullable();
 
             $table->timestamps();
         });

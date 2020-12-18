@@ -16,6 +16,11 @@
       <input type="hidden" name="name" value="{{ $input['name'] }}">
     </div>
     <div class="form-group">
+      <label>通知用メールアドレス</label>
+      <span>{{ $input['email'] }}</span>
+      <input type="hidden" name="email" value="{{ $input['email'] }}">
+    </div>
+    <div class="form-group">
       <label>定休日</label>
       @if (isset($input['holiday']))
       @php

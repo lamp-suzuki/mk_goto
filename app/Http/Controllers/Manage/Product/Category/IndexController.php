@@ -37,7 +37,7 @@ class IndexController extends Controller
     // 店舗追加
     public function edit($account, $id)
     {
-        return view('manage.product.category.edit',[
+        return view('manage.product.category.edit', [
             'shop' => DB::table('categories')->find($id)
         ]);
     }
@@ -66,6 +66,7 @@ class IndexController extends Controller
                 DB::table('categories')->insert([
                     'manages_id' => $manages->id,
                     'name' => $request->input('name'),
+                    'email' => $request->input('email'),
                     'area' => $request->input('area'),
                     'holiday' => $request->input('holiday'),
                     'stock' => $request->input('stock'),
@@ -83,6 +84,7 @@ class IndexController extends Controller
             DB::table('categories')->where('id', $request->input('id'))->update([
                 'name' => $request->input('name'),
                 'area' => $request->input('area'),
+                'email' => $request->input('email'),
                 'holiday' => $request->input('holiday'),
                 'stock' => $request->input('stock'),
                 'coupon' => $request->input('coupon'),

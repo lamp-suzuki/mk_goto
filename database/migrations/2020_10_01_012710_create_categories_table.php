@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedBigInteger('manages_id'); // 店舗アカウント
             $table->foreign('manages_id')->references('id')->on('manages');
             $table->string('name');
+            $table->string('email');
             $table->string('area');
             $table->string('holiday');
             $table->boolean('coupon')->default(0);

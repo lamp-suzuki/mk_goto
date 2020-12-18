@@ -10,28 +10,24 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index($account)
+    public function index($account, Request $request)
     {
-        // カテゴリ取得
-        try {
-            $manage = Auth::guard('manage')->user();
-            $categories = DB::table('categories')->where([
-                ['manages_id', $manage->id],
-            ])->orderBy('sort_id', 'asc')->get();
-        } catch (\Exception $e) {
-        }
+        $manages = Auth::guard('manage')->user();
+        $shops = DB::table('categories')
+            ->where('manages_id', $manages->id)
+            ->get()
+            ->groupBy('id')
+            ->toArray();
 
-        // 商品取得
-        $menus = [];
-        foreach ($categories as $key => $cat) {
-            if (DB::table('products')->where('categories_id', $cat->id)->exists()) {
-                $menus[$cat->id] = $menu = DB::table('products')->where('categories_id', $cat->id)->orderBy('sort_id', 'asc')->get();
-            }
+        $tours = DB::table('products')->where('manages_id', $manages->id);
+        if ($request->input('search')) {
+            $tours->where('name', 'LIKE', "%{$request->input('search')}%");
         }
+        $tours = $tours->orderByDesc('created_at')->paginate(50);
 
         return view('manage.product.index', [
-            'categories' => $categories,
-            'menus' => $menus
+            'shops' => $shops,
+            'tours' => $tours
         ]);
     }
 

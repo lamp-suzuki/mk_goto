@@ -47,6 +47,11 @@
   </div>
 
   <div class="form-group">
+    <label for="email">通知用メールアドレス</label>
+    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required>
+  </div>
+
+  <div class="form-group">
     <label for="holiday">定休日（指定した曜日すべてが予約不可になります）</label>
     @php
     $num = 0;

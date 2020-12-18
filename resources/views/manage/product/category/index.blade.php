@@ -8,7 +8,7 @@
 
 {{-- 成功メッセージ --}}
 @if(session()->has('message'))
-<div class="alert alert-info alert-dismissible fade show mt-3">
+<div class="alert alert-success alert-dismissible fade show mt-3">
   {{ session('message') }}
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -39,6 +39,8 @@
       <thead>
         <tr>
           <th>店舗名</th>
+          <th>エリア</th>
+          <th>クーポン</th>
           <th class="edit">編集</th>
           <th class="delete">削除</th>
         </tr>
@@ -47,6 +49,8 @@
         @foreach ($categories as $cat)
         <tr data-id="{{ $cat->id }}">
           <td>{{ $cat->name }}</td>
+          <td>{{ $cat->area }}</td>
+          <td>{{ $cat->coupon == 0 ? 'なし' : 'あり' }}</td>
           <td>
             <a href="{{ route('manage.product.category.edit', ['account' => $sub_domain, 'id' => $cat->id]) }}" class="edit">
               <i data-feather="edit-2"></i>
